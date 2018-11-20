@@ -115,6 +115,15 @@ namespace Unity_ScratchPad
             mazeController.Reset();
             mazeController.Draw();
         }
+
+        private void btnRooms_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnRooms_Click_1(object sender, EventArgs e)
+        {
+            mazeController.AddRooms();
+        }
     }
 
     public class AlgorithmListItem

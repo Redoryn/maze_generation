@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity_ScratchPad.MazeAlgorithms;
+using Unity_ScratchPad.RoomAlgorithms;
 
 namespace Unity_ScratchPad
 {
@@ -14,6 +15,8 @@ namespace Unity_ScratchPad
         private IMaze maze;
         private Graphics graphics;
         private IMazeGeneratorAlgorithm algo;
+
+        public bool GenerateRooms { get; internal set; }
 
         public MazeController(Graphics graphics)
         {
@@ -50,6 +53,13 @@ namespace Unity_ScratchPad
         public void RunToCompletion()
         {
             maze.RunToCompletion();
+        }
+
+        public void AddRooms()
+        {
+            RoomBuilder builder = new RoomBuilder();
+            builder.GenerateRooms(maze, 6);
+            maze.Draw();
         }
 
         public void Dispose()

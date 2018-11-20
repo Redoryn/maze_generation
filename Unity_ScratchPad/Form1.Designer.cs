@@ -34,6 +34,7 @@
             this.picBoxGrid = new System.Windows.Forms.PictureBox();
             this.listBoxAlgorithms = new System.Windows.Forms.ListBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnRooms = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,11 +95,22 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnRooms
+            // 
+            this.btnRooms.Location = new System.Drawing.Point(686, 462);
+            this.btnRooms.Name = "btnRooms";
+            this.btnRooms.Size = new System.Drawing.Size(75, 23);
+            this.btnRooms.TabIndex = 6;
+            this.btnRooms.Text = "Add Rooms";
+            this.btnRooms.UseVisualStyleBackColor = true;
+            this.btnRooms.Click += new System.EventHandler(this.btnRooms_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 559);
+            this.Controls.Add(this.btnRooms);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.listBoxAlgorithms);
             this.Controls.Add(this.picBoxGrid);
@@ -122,6 +134,7 @@
         private System.Windows.Forms.PictureBox picBoxGrid;
         private System.Windows.Forms.ListBox listBoxAlgorithms;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnRooms;
     }
 }
 

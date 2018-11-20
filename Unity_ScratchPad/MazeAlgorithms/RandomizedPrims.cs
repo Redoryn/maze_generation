@@ -35,7 +35,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
             {
                 if (this.maze.IsWallTile(p))
                 {
-                    walls.Add(new Wall(x, y, p.x, p.y));
+                    walls.Add(new Wall(x, y, (int)p.x, (int)p.y));
                 }
             }
 
@@ -86,7 +86,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
                 Point wallPos = WallPosition(w);
                 MarkAsPartOfMaze(unvisited);
                 MarkAsPartOfMaze(wallPos);
-                walls.AddRange(SurroundingWalls(unvisited.x, unvisited.y));
+                walls.AddRange(SurroundingWalls((int)unvisited.x, (int)unvisited.y));
             }
         }
 

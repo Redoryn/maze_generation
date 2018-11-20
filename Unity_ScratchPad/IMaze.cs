@@ -9,6 +9,9 @@ namespace Unity_ScratchPad
 {
     public interface IMaze
     {
+        int Height { get; }
+        int Width { get; }
+
         void Fill(MazeTile tile);
         void MarkAsPartOfMaze(int x, int y);
         IEnumerable<Point> Neighbors(int x, int y, int dist = 1);

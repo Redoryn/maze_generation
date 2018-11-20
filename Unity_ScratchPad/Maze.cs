@@ -17,12 +17,30 @@ namespace Unity_ScratchPad
 
     public struct Point
     {
-        public int x, y;
-        public Point (int x, int y)
+        public double x, y;
+        public Point (double x, double y)
         {
             this.x = x;
             this.y = y;
         }
+
+        public Point Add(Point p)
+        {
+            return new Unity_ScratchPad.Point()
+            {
+                x = this.x + p.x,
+                y = this.y + p.y
+            };
+        }
+        
+        public Point Subtract(Point p)
+        {
+            return new Point()
+            {
+                x = this.x - p.x,
+                y = this.y - p.y
+            };
+        } 
     }
 
     public struct Wall
@@ -44,8 +62,8 @@ namespace Unity_ScratchPad
     public class Maze: IMaze
     {
         public MazeTile[] cells;
-        int Height;
-        int Width;
+        public int Height { get; }
+        public int Width { get; }
         private Random r;
         private IOutputMazeTileGrid mazeTileGrid;
         private IMazeGeneratorAlgorithm algo;
@@ -100,12 +118,12 @@ namespace Unity_ScratchPad
 
         public bool IsPathTile(Point p)
         {
-            return IsPathTile(p.x, p.y);
+            return IsPathTile((int)p.x, (int)p.y);
         }
 
         public bool IsWallTile(Point p)
         {
-            return IsWallTile(p.x, p.y);
+            return IsWallTile((int)p.x, (int)p.y);
         }
 
         public bool IsWallTile(int x, int y)
@@ -115,13 +133,13 @@ namespace Unity_ScratchPad
 
         public void MakePathTile(Point p)
         {
-            Set(p.x, p.y, MazeTile.Open);
+            Set((int)p.x, (int)p.y, MazeTile.Open);
         }
 
 
         public bool InBounds(Point p)
         {
-            return InBounds(p.x, p.y);
+            return InBounds((int)p.x, (int)p.y);
         }
 
         public bool InBounds(int x, int y)
@@ -145,7 +163,7 @@ namespace Unity_ScratchPad
 
         private void MarkAsPartOfMaze(Point p)
         {
-            this.MarkAsPartOfMaze(p.x, p.y);
+            this.MarkAsPartOfMaze((int)p.x, (int)p.y);
         }
         
         public void Draw()

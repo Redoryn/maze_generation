@@ -18,7 +18,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
 
         protected IEnumerable<Point> UnvisitedNeighbors(Point p, int dist=1)
         {
-            return maze.Neighbors(p.x, p.y, dist).Where(pp => (!IsVisited(pp)));
+            return maze.Neighbors((int)p.x, (int)p.y, dist).Where(pp => (!IsVisited(pp)));
         }
 
         public Point WallPosition(Point a, Point b)
@@ -29,7 +29,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
 
         protected void MarkAsPartOfMaze(Point p)
         {
-            MarkAsPartOfMaze(p.x, p.y);
+            MarkAsPartOfMaze((int)p.x, (int)p.y);
         }
 
         protected void MarkAsPartOfMaze(int x, int y)
@@ -40,7 +40,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
 
         protected void MarkAsVisited(Point p)
         {
-            MarkAsVisited(p.x, p.y);
+            MarkAsVisited((int)p.x, (int)p.y);
         }
         protected void MarkAsVisited(int x, int y)
         {
@@ -49,12 +49,12 @@ namespace Unity_ScratchPad.MazeAlgorithms
 
         protected void MarkAsNotVisited(Point p)
         {
-            visited.Set(p.x, p.y, false);
+            visited.Set((int)p.x, (int)p.y, false);
         }
 
         protected bool IsVisited(Point p)
         {
-            return IsVisited(p.x, p.y);
+            return IsVisited((int)p.x, (int)p.y);
         }
 
         protected bool IsVisited(int x, int y)
