@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ColoredGrid.cs" />
+    <Compile Include="MazeTile.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="IMaze.cs" />
     <Compile Include="IOutputMazeTileGrid.cs" />
@@ -62,9 +63,12 @@
     <Compile Include="MazeAlgorithms\RandomizedPrims.cs" />
     <Compile Include="MazeAlgorithms\RecursiveBacktracker.cs" />
     <Compile Include="MazeController.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomAlgorithms\QuadTree.cs" />
     <Compile Include="RoomAlgorithms\RoomBuilder.cs" />
+    <Compile Include="Wall.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

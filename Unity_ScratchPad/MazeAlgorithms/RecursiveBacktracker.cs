@@ -16,7 +16,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
         public RecursiveBacktracker(int height, int width, IMaze maze):base(height, width, maze) {
             r = new Random(DateTime.Now.Millisecond);
             this.maze.Fill(MazeTile.Wall);
-            frontier = new Stack<Point>();
+            frontier = null;
             int startingX = 0;
             int startingY = 0;
             current = new Point(startingX, startingY);
@@ -30,7 +30,7 @@ namespace Unity_ScratchPad.MazeAlgorithms
 
         public override void RunToCompletion()
         {
-            while (frontier.Count > 0)
+            while (frontier == null || frontier.Count > 0)
             {
                 StepForward();
             }
@@ -39,6 +39,11 @@ namespace Unity_ScratchPad.MazeAlgorithms
         private Point current;
         public override void StepForward()
         {
+            if (frontier == null)
+            {
+                frontier = new Stack<Point>();
+            }
+
             var unvisited = UnvisitedNeighbors(current, 2);
             if (unvisited.Count() > 0)
             {

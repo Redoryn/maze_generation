@@ -13,12 +13,14 @@ namespace Unity_ScratchPad
         public int TilePadding { get; set; }
         public int Rows { get; }
         public int Columns { get; }
+        public bool DrawGridLines { get; set; }
 
         private Color[] contents;
         private Dictionary<Color, Brush> brushes;
         private Graphics graphics;
         public ColoredGrid(int rows, int columns, int tileSize, Color defaultColor, Graphics graphics)
         {
+            this.DrawGridLines = true;
             this.Rows = rows;
             this.Columns = columns;
             this.TileSize = tileSize;
@@ -56,7 +58,41 @@ namespace Unity_ScratchPad
         public void Draw()
         {
             this.Draw(graphics);
+            if (DrawGridLines)
+            {
+                DoDrawGridLines();
+            }
         }
+
+        private void DoDrawGridLines()
+        {
+            this.DoDrawGridLines(graphics);
+        }
+
+        private void DoDrawGridLines(Graphics graphics)
+        {
+            int height = (TilePadding + TileSize) * Rows;
+            int width = (TilePadding + TileSize) * Columns;
+            int x = TilePadding;
+            int y = TilePadding;
+            Color color = contents[0];
+            Pen pen = new Pen(Color.Gray, 1);
+            pen.DashPattern = new float[] { 1, 1 };
+            for (int r = 0; r < this.Rows; r++)
+            {
+                //draw horizontal lines
+                graphics.DrawLine(pen, 0, y, width, y);
+                y += (TileSize + TilePadding);
+            }
+
+            for (int c = 0; c < this.Columns; c++)
+            {
+                //draw vertical lines
+                graphics.DrawLine(pen, x, 0, x, height);
+                x += (TileSize + TilePadding);
+            }
+        }
+
 
         public void Draw(Graphics graphics) {
             int x = 0;

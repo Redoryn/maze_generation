@@ -18,6 +18,25 @@ namespace Unity_ScratchPad.RoomAlgorithms
         public int Width;
     }
 
+    public class RoomQuadTree: QuadTree<Room>
+    {
+        public RoomQuadTree(int height, int width):
+                base(new QuadTreeNode<Room>(new Point(0, 0), height, width))
+        {}
+
+        public override double HorizontalSplice()
+        {
+            return 0.2;
+        }
+
+        public override double VerticalSplice()
+        {
+            return 0.2;
+        }
+
+
+    }
+
 
     public class RoomBuilder
     {
@@ -27,55 +46,29 @@ namespace Unity_ScratchPad.RoomAlgorithms
             r = new Random(DateTime.Now.Millisecond);
         }
 
+        private IMaze maze;
+        private int maxLevel;
         public void GenerateRooms(IMaze maze, int n=1)
         {
+            this.maze = maze;
             int height = maze.Height;
             int width = maze.Width;
-            RecursiveSubDivideRoomGeneration(maze, new Point(0, 0), new Room(height, width), 3);
+            maxLevel = 4;
+            RoomQuadTree qt = new RoomQuadTree(height, width);
+            qt.Divide(maxLevel, GenerateRoom);
         }
 
-        private void RecursiveSubDivideRoomGeneration(IMaze maze, Point topLeft, Room room, int minLevel = 1)
+        public void GenerateRoom(Point pos, double height, double width, int level)
         {
-            if (room.Width <= 0 || room.Height <= 0) return;
+            if (level != maxLevel) return;
 
-            if (minLevel == 0)
-            {
-                GenerateRandomRoom(maze, topLeft, room);
-                return;
-            }
+            if (r.Next(100) > 20) return;
 
-            int xSplice = (int)RandomGaussian(room.Width * 0.75, 1);
-            int ySplice = (int)RandomGaussian(room.Height * 0.75, 1);
-            //int xSplice = r.Next(room.Width);
-            //int ySplice = r.Next(room.Height);
-            //int xSplice = (int)room.Width / 2;
-            //int ySplice = (int)room.Height / 2;
-
-            Point subTopLeft     = topLeft.Add(new Point(0, 0));
-            int subTopLeftHeight = ySplice;
-            int subTopLeftWidth  = xSplice;
-            Room subTopLeftRoom = new Room(subTopLeftHeight, subTopLeftWidth);
-
-            Point subTopRight    = topLeft.Add(new Point(xSplice, 0));
-            int subTopRightHeight = ySplice;
-            int subTopRightWidth = room.Width - xSplice;
-            Room subTopRightRoom = new Room(subTopRightHeight, subTopRightWidth);
-
-            Point subBottomLeft  = topLeft.Add(new Point(0, ySplice));
-            int subBottomLeftHeight = room.Height - ySplice;
-            int subBottomLeftWidth = xSplice;
-            Room subButtomLeftRoom = new Room(subBottomLeftHeight, subBottomLeftWidth);
-
-            Point subBottomRight = topLeft.Add(new Point(xSplice, ySplice));
-            int subBottomRightHeight = room.Height - ySplice;
-            int subBottomRightWidth = room.Width - xSplice;
-            Room subBottomRightRoom = new Room(subBottomRightHeight, subBottomRightWidth);
-
-            RecursiveSubDivideRoomGeneration(maze, subTopLeft, subTopLeftRoom, r.Next(minLevel));
-            RecursiveSubDivideRoomGeneration(maze, subTopRight, subTopRightRoom, r.Next(minLevel));
-            RecursiveSubDivideRoomGeneration(maze, subBottomLeft, subButtomLeftRoom, r.Next(minLevel));
-            RecursiveSubDivideRoomGeneration(maze, subBottomRight, subBottomRightRoom, r.Next(minLevel));
+            Room room = new Room((int)Math.Ceiling(height), (int)Math.Ceiling(width));
+            FillInRoom(maze, room, pos);
         }
+
+        
 
         private void GenerateRandomRoom(IMaze maze, Point containerPos, Room containerRoom)
         {

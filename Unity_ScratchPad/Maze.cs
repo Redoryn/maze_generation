@@ -8,57 +8,6 @@ using Unity_ScratchPad.MazeAlgorithms;
 
 namespace Unity_ScratchPad
 {
-    public enum MazeTile
-    {
-        Open,
-        Wall,
-        Unknown
-    }
-
-    public struct Point
-    {
-        public double x, y;
-        public Point (double x, double y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-
-        public Point Add(Point p)
-        {
-            return new Unity_ScratchPad.Point()
-            {
-                x = this.x + p.x,
-                y = this.y + p.y
-            };
-        }
-        
-        public Point Subtract(Point p)
-        {
-            return new Point()
-            {
-                x = this.x - p.x,
-                y = this.y - p.y
-            };
-        } 
-    }
-
-    public struct Wall
-    {
-        public Point SideA, SideB;
-
-        public Wall(Point sideA, Point sideB)
-        {
-            SideA = sideA;
-            SideB = sideB;           
-        }
-
-        public Wall(int x0, int y0, int x1, int y1): this(new Point(x0, y0), new Point(x1, y1))
-        {
-
-        }
-    }
-
     public class Maze: IMaze
     {
         public MazeTile[] cells;
@@ -101,7 +50,7 @@ namespace Unity_ScratchPad
         {
             Point above = new Point(x, y - dist);
             Point below = new Point(x, y + dist);
-            Point left = new Point(x - dist, y);
+            Point left  = new Point(x - dist, y);
             Point right = new Point(x + dist, y);
 
             List<Point> points = new List<Point>()
