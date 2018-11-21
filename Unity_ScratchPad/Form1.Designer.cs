@@ -109,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 559);
+            this.ClientSize = new System.Drawing.Size(784, 623);
             this.Controls.Add(this.btnRooms);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.listBoxAlgorithms);

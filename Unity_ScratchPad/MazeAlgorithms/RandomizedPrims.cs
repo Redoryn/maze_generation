@@ -79,6 +79,8 @@ namespace Unity_ScratchPad.MazeAlgorithms
 
         public override void StepForward()
         {
+            if (walls == null || walls.Count == 0) return;
+
             Wall w = RandomWallFromWallList(walls);
             if (IsOnlyOneSideOfDoorVisited(w))
             {

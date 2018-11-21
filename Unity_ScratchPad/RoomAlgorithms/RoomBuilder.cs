@@ -26,12 +26,12 @@ namespace Unity_ScratchPad.RoomAlgorithms
 
         public override double HorizontalSplice()
         {
-            return 0.2;
+            return 0.5;
         }
 
         public override double VerticalSplice()
         {
-            return 0.2;
+            return 0.5;
         }
 
 
@@ -43,7 +43,8 @@ namespace Unity_ScratchPad.RoomAlgorithms
         Random r;
         public RoomBuilder()
         {
-            r = new Random(DateTime.Now.Millisecond);
+            //r = new Random(DateTime.Now.Millisecond);
+            r = new Random();
         }
 
         private IMaze maze;
@@ -62,7 +63,7 @@ namespace Unity_ScratchPad.RoomAlgorithms
         {
             if (level != maxLevel) return;
 
-            if (r.Next(100) > 20) return;
+            if (r.Next(100) > 50) return;
 
             Room room = new Room((int)Math.Ceiling(height), (int)Math.Ceiling(width));
             FillInRoom(maze, room, pos);
@@ -108,7 +109,6 @@ namespace Unity_ScratchPad.RoomAlgorithms
                     {
                         maze.MarkAsPartOfMaze(p_x, p_y);
                     }
-
                 }
             }
 

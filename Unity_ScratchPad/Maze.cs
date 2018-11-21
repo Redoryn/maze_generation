@@ -140,6 +140,23 @@ namespace Unity_ScratchPad
             tileGrid.Draw();
         }
 
+        public double FilledRatio()
+        {
+            int countFilled = 0;
+            for (int x = 0; x < this.Width; x++)
+            {
+                for (int y = 0; y < this.Height; y++)
+                {
+                    MazeTile tile = this.Get(x, y);
+                    if (tile == MazeTile.Wall)
+                    {
+                        countFilled++;
+                    }
+                }
+            }
+            return (double)countFilled / (Width * Height);
+        }
+
         void IMaze.Fill(MazeTile tile)
         {
             this.Fill(tile);

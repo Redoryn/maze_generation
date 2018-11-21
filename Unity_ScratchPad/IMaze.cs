@@ -13,6 +13,7 @@ namespace Unity_ScratchPad
         int Width { get; }
 
         void Fill(MazeTile tile);
+        double FilledRatio();
         void MarkAsPartOfMaze(int x, int y);
         IEnumerable<Point> Neighbors(int x, int y, int dist = 1);
         void SetAlgorithm(IMazeGeneratorAlgorithm algo);

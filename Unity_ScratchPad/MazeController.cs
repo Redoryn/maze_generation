@@ -60,6 +60,7 @@ namespace Unity_ScratchPad
             RoomBuilder builder = new RoomBuilder();
             builder.GenerateRooms(maze, 6);
             maze.Draw();
+            Console.WriteLine(string.Format("Filled ratio: {0}", maze.FilledRatio()));
         }
 
         public void Dispose()
